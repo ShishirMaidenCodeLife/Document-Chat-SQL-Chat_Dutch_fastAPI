@@ -1,0 +1,51 @@
+# Natural Language Processing
+## make conda environment with python = 3.10.0 manditorily to run chromadb....
+langchain==0.0.267
+chromadb==0.4.6
+pdfminer.six==20221105
+InstructorEmbedding
+# InstructorEmbedding==1.0.1
+sentence-transformers
+# sentence-transformers==2.2.2
+faiss-cpu
+#faiss-cpu==1.7.4
+huggingface_hub
+# huggingface-hub==0.17.3
+transformers
+# transformers==4.34.0
+protobuf==3.20.2; sys_platform != 'darwin'
+protobuf==3.20.2; sys_platform == 'darwin' and platform_machine != 'arm64'
+protobuf==3.20.3; sys_platform == 'darwin' and platform_machine == 'arm64'
+auto-gptq==0.2.2
+docx2txt
+# docx2txt==0.8
+unstructured
+# unstructured==0.10.21
+unstructured[pdf]
+
+# Utilities
+urllib3==1.26.6
+accelerate
+# accelerate==0.23.0
+bitsandbytes ; sys_platform != 'win32'
+bitsandbytes-windows ; sys_platform == 'win32'
+#bitsandbytes-windows==0.37.5
+click
+# click==8.1.7
+flask
+#Flask==3.0.0
+requests
+#requests==2.31.0
+
+# Streamlit related
+streamlit
+Streamlit-extras
+#streamlit==1.27.2
+#streamlit-extras==0.0.9
+
+# Excel File Manipulation
+openpyxl
+#openpyxl==3.1.2
+
+### for cpu
+# llama-cpp-python==0.1.83
