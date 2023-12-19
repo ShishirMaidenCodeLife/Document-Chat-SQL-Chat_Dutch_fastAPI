@@ -16,7 +16,7 @@ SOURCE_DIRECTORY = f"{ROOT_DIRECTORY}/SOURCE_DOCUMENTS"
 
 PERSIST_DIRECTORY = f"{ROOT_DIRECTORY}/DB"
 
-TRANSLATE_DIRECTORY = f"{ROOT_DIRECTORY}/DutchToEnglishFiles"
+TRANSLATE_DIRECTORY = f"{ROOT_DIRECTORY}/DutchToEnglishFiles_cID"
 
 DE_TRANSLATOR_DIRECTORY = f"{ROOT_DIRECTORY}/DutchToEnglishModel"
 
@@ -105,6 +105,9 @@ MODEL_BASENAME3 = "llama-2-7b-chat.Q4_K_M.gguf"
 
 # MODEL_ID =  os.path.join(ROOT_DIRECTORY, "Mymodel/WizardVicuna")
 # MODEL_BASENAME = os.path.join(ROOT_DIRECTORY, MODEL_ID, "model.safetensors")
+
+# MODEL_ID = "TheBloke/Mistral-7B-Instruct-v0.1-ggml"
+# MODEL_BASENAME = "mistral-7b-instruct-v0.1.Q8_0.ggml"
 
 # MODEL_ID = "TheBloke/Mistral-7B-Instruct-v0.1-GGUF"
 # MODEL_BASENAME = "mistral-7b-instruct-v0.1.Q8_0.gguf"
