@@ -22,7 +22,7 @@ def read_html():
         html_content = file.read()
     return HTMLResponse(content=html_content, status_code=200)
 
-@app.post("/uploadfile/")
+@app.post("/uploadfile")
 async def upload_file(file: UploadFile):
     os.makedirs("DutchToEnglishFiles_cID", exist_ok=True)
     file_path = os.path.join("DutchToEnglishFiles_cID", file.filename)
@@ -47,24 +47,39 @@ async def upload_file(file: UploadFile):
 #         return {"message": "Embedding started in the background."}
 #     except Exception as e:
 #         return {"error": str(e)}
+
+#### to get the data input directly ####
+from defaultValues import SOURCE_DIRECTORY, TRANSLATE_DIRECTORY
+from fastapi import Form ##"pip install python-multipart"
+
+@app.post("/extra_text")
+async def user_text_input(user_data: str= Form(...)):
+    with open(f"{TRANSLATE_DIRECTORY}/user_dutch_text.txt", "w") as user_input_file:
+        user_input_file.write(user_data)
+    return {"messege": "File created for the user text"}
+
+
     
-@app.post("/process/")
+@app.post("/process")
 async def run_embed():
     try:
         # Start the first process
+        print("\nTranslation started")
         process1 = subprocess.Popen(["python", "translate.py"])
-        print("translation completed")
         # Wait for the first process to finish
         process1.wait()
+        print("\ntranslation completed")
 
         # Start the second process after the first one finishes
         process2 = subprocess.Popen(["python", "EmbedVecStore.py"])
         # Wait for the second process to finish
         process2.wait()
-        return {"message": "Document Processing started in the background."}
+        return {"message": "Document Processing Completed."}
     except Exception as e:
         return {"error": str(e)}
     
+
+
 
 
 class ChatRequest(BaseModel):
@@ -113,7 +128,6 @@ from defaultValues import (
     MAX_NEW_TOKENS,
     MODELS_PATH,
 )
-
 
 def load_model(device_type, model_id, model_basename=None, LOGGING=logging):
     """

@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Chat with CPU</title>
+</head>
+<body>
+    <h1>Step 1: Upload a File</h1>
+    <form action="/uploadfile/" method="post" enctype="multipart/form-data">
+        <input type="file" name="file"><br><br>
+        <input type="submit" value="Upload">
+    </form>
+    
+    <br>
+    <hr>
+
+    <h1>Step 1: Additional Text </h1>
+    <form action="/extra_text" method="post">
+        <label for="user-text"> Type extra knowledge here in Dutch. </label>
+        <br>
+        <input type="text" id ="user-text" name="user_data" placeholder="Type dutch text" required>
+        <button type="submit">Submit</button>
+    </form> 
+
+    <h1>Step 2: Document Processing</h1>
+
+    <form action="/process/" method="post">
+        <input type="submit" value="Document Processing">
+    </form>
+
+    
+    <br>
+    <hr>
+
+
+    <h1>Step 3: Chat with Your Documents (Dutch)</h1>
+    <div id="chat-box">
+        <!-- <div class="message" id="bot-message">
+            <strong>Bot:</strong> Hello! How can I assist you? 
+        </div> -->
+        <div class="message" id="bot-message">
+            <!-- <strong>Flare Bot:</strong> Hallo, hoe kan ik u helpen?
+             -->
+             <strong>Flare Bot:</strong>Hallo! Ik kan antwoorden geven op basis van jouw documenten. Wat wil je weten?
+        </div>
+    </div>
+    <input type="text" id="user-input" placeholder="Type your query..." onkeydown="sendMessage(event)">
+    
+    <script>
+        async function sendMessage(event) {
+            if (event.key === "Enter") {
+                const userMessage = document.getElementById("user-input").value;
+                document.getElementById("user-input").value = "";
+
+                addMessage("user", userMessage);
+                
+                const response = await chatWithBot(userMessage);
+                addMessage("bot", response.bot_response);
+            }
+        }
+
+        async function chatWithBot(userPrompt) {
+            const url = "/chat/";
+            const response = await fetch(url, {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json",
+                },
+                body: JSON.stringify({ user_prompt: userPrompt }),
+            });
+
+            const data = await response.json();
+            return data;
+        }
+
+        function addMessage(sender, message) {
+            const messageDiv = document.createElement("div");
+            messageDiv.classList.add("message");
+            messageDiv.innerHTML = `<strong>${sender}:</strong> ${message}`;
+            document.getElementById("chat-box").appendChild(messageDiv);
+        }
+    </script>
+
+<br>
+<hr>
+
+<!-- <h1>Chat with GPU</h1>
+<form action="/prompt_route_gpu" method="post">
+    <label for="user_prompt">Enter your prompt:</label><br>
+    <input type="text" id="user_prompt" name="user_prompt"><br><br>
+    <input type="submit" value="Submit">
+</form> -->
+
+
+</body>
+</html>
