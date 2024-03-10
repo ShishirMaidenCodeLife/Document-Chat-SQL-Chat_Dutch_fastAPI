@@ -1,41 +1,112 @@
-<!DOCTYPE html>
-<html>
+<!-- <!DOCTYPE html>
+<html lang="en">
 <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Chat with CPU</title>
+    <style>
+        body {
+            background-color: #f0f8ff; /* Light blue background */
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            height: 100vh;
+        }
+
+        .segment {
+            margin: 20px;
+            padding: 20px;
+            border-radius: 15px; /* Rounded corners */
+            border: 2px dashed #007acc; /* Dashed border */
+            background-color: #ffffff; /* White background */
+            max-width: 600px;
+            width: 100%;
+        }
+
+        h1 {
+            color: #007acc; /* Darker blue for headings */
+            text-align: center;
+        }
+
+        form {
+            margin-bottom: 20px;
+            text-align: center;
+        }
+
+        input[type="file"], input[type="text"], input[type="submit"], button {
+            padding: 10px;
+            margin: 5px;
+            border-radius: 10px; /* Rounded corners */
+            border: 1px dashed #007acc; /* Dashed border */
+            background-color: #ffffff; /* White background */
+        }
+
+        input[type="submit"]:hover, button:hover {
+            background-color: #007acc; /* Darker blue on hover */
+            color: #ffffff; /* White text on hover */
+        }
+
+        #chat-box {
+            max-width: 600px;
+            margin: 10px auto;
+            padding: 10px;
+            border-radius: 10px;
+            border: 1px dashed #007acc;
+            background-color: #ffffff;
+        }
+
+        .message {
+            margin-bottom: 10px;
+        }
+
+        #user-input {
+            padding: 10px;
+            margin: 5px;
+            border-radius: 10px;
+            border: 1px dashed #007acc;
+            width: calc(100% - 22px);
+        }
+    </style>
 </head>
 <body>
-    <h1>Step 1: Upload a File</h1>
-    <form action="/uploadfile/" method="post" enctype="multipart/form-data">
-        <input type="file" name="file"><br><br>
-        <input type="submit" value="Upload">
-    </form>
-    
-    <br>
-    <hr>
-
-    <h1>Step 2: Document Processing</h1>
-
-    <form action="/process/" method="post">
-        <input type="submit" value="Document Processing">
-    </form>
-
-    
-    <br>
-    <hr>
-
-
-    <h1>Step 3: Chat with Your Documents (Dutch)</h1>
-    <div id="chat-box">
-        <!-- <div class="message" id="bot-message">
-            <strong>Bot:</strong> Hello! How can I assist you? 
-        </div> -->
-        <div class="message" id="bot-message">
-            <!-- <strong>Flare Bot:</strong> Hallo, hoe kan ik u helpen?
-             -->
-             <strong>Flare Bot:</strong>Hallo! Ik kan antwoorden geven op basis van jouw documenten. Wat wil je weten?
-        </div>
+    <div class="segment">
+        <h1>Step 1: Upload a File</h1>
+        <form action="/uploadfile/" method="post" enctype="multipart/form-data">
+            <input type="file" name="file"><br><br>
+            <input type="submit" value="Upload">
+        </form>
     </div>
-    <input type="text" id="user-input" placeholder="Type your query..." onkeydown="sendMessage(event)">
+    
+    <div class="segment">
+        <h1>Step 2: Additional Text (opt) </h1>
+        <form action="/extra_text" method="post">
+            <label for="user-text"> Type extra knowledge here in Dutch. </label>
+            <br>
+            <input type="text" id ="user-text" name="user_data" placeholder="Type Dutch text" required>
+            <button type="submit">Submit</button>
+        </form> 
+    </div>
+
+    <div class="segment">
+        <h1>Step 2: Document Processing</h1>
+        <form action="/process/" method="post">
+            <input type="submit" value="Document Processing">
+        </form>
+    </div>
+
+    <div class="segment" style="max-width: 800px;">
+        <h1>Step 3: Chat with Your Documents (Dutch)</h1>
+        <div id="chat-box">
+            <div class="message" id="bot-message">
+                <strong>Flare Bot:</strong>Hallo! Ik kan antwoorden geven op basis van jouw documenten. Wat wil je weten?
+            </div>
+        </div>
+        <input type="text" id="user-input" placeholder="Type your query..." onkeydown="sendMessage(event)">
+    </div>
+    
     <script>
         async function sendMessage(event) {
             if (event.key === "Enter") {
@@ -70,17 +141,178 @@
             document.getElementById("chat-box").appendChild(messageDiv);
         }
     </script>
+</body>
+</html> -->
 
-<br>
-<hr>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Chat with CPU</title>
+    <style>
+        body {
+            background-color: #f0f8ff; /* Light blue background */
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            height: 100vh;
+        }
 
-<!-- <h1>Chat with GPU</h1>
-<form action="/prompt_route_gpu" method="post">
-    <label for="user_prompt">Enter your prompt:</label><br>
-    <input type="text" id="user_prompt" name="user_prompt"><br><br>
-    <input type="submit" value="Submit">
-</form> -->
+        .row {
+            display: flex;
+            justify-content: space-around;
+            width: 100%;
+            box-sizing: border-box;
+            padding: 20px;
+        }
+
+        .segment {
+            margin: 20px;
+            padding: 20px;
+            border-radius: 15px; /* Rounded corners */
+            border: 2px dashed #007acc; /* Dashed border */
+            background-color: #ffffff; /* White background */
+            max-width: 400px;
+            /* min-width: 100px; */
+            width: 100%;
+        }
+
+        h1 {
+            color: #007acc; /* Darker blue for headings */
+            text-align: center;
+        }
+
+        form {
+            margin-bottom: 20px;
+            text-align: center;
+        }
+
+        input[type="file"], input[type="text"] {
+            padding: 10px;
+            margin: 5px;
+            border-radius: 10px; /* Rounded corners */
+            border: 1px dashed #007acc; /* Dashed border */
+            background-color: #ffffff; /* White background */
+        }
+
+        input[type="submit"], button {
+            padding: 10px;
+            margin: 5px;
+            border-radius: 10px; /* Rounded corners */
+            border: 1px solid #007acc; /* Dashed border */
+            background-color: #edf3f8; /* White background */
+        }
+
+        input[type="submit"]:hover, button:hover {
+            background-color: #007acc; /* Darker blue on hover */
+            color: #ffffff; /* White text on hover */
+        }
+
+        #chat-box {
+            max-width: 80%;
+            margin: 10px auto;
+            padding: 10px;
+            border-radius: 10px;
+            border: 1px dashed #007acc;
+            background-color: #ffffff;
+            margin-top:40px;
+            height:350px;
+            
+        }
+
+        .message {
+            margin: 10px;
+        }
 
 
+        #user-input {
+            padding: 10px;
+            margin: 5px;
+            border-radius: 10px;
+            border: 1px dashed #007acc;
+            width: calc(100% - 25px);
+            margin-top: 40px;
+            /* position: absolute;     */
+        }
+    </style>
+</head>
+<body>
+    <div class="row">
+        <div class="segment">
+            <h1>Step 1: Upload a File</h1>
+            <form action="/uploadfile/" method="post" enctype="multipart/form-data">
+                <input type="file" name="file"><br><br>
+                <input type="submit" value="Upload">
+            </form>
+        </div>
+
+        <div class="segment">
+            <h1>Optional: Additional Text </h1>
+            <form action="/extra_text" method="post">
+                <label for="user-text"> Type extra knowledge here in Dutch. </label>
+                <br>
+                <input type="text" id ="user-text" name="user_data" placeholder="Type Dutch text" required>
+                <button type="submit">Submit</button>
+            </form>
+        </div>
+
+        <div class="segment">
+            <h1>Step 2: Document Processing</h1>
+            <form action="/process/" method="post">
+                <input type="submit" value="Document Processing">
+            </form>
+        </div>
+    </div>
+
+    <div class="segment" style=" min-width: 300px; max-width: 90%; min-height: 70%;">
+        <h1>Step 3: Chat with Your Documents (Dutch)</h1>
+        <div id="chat-box" style= "height:350px; overflow:scroll">
+            <div class="message" id="bot-message">
+                <strong>Flare Bot:</strong>Hallo! Ik kan antwoorden geven op basis van jouw documenten. Wat wil je weten?
+            </div>
+        </div>
+        
+        <input type="text" id="user-input" placeholder="Type your query..." onkeydown="sendMessage(event)">
+        
+    </div>
+
+    <script>
+        async function sendMessage(event) {
+            if (event.key === "Enter") {
+                const userMessage = document.getElementById("user-input").value;
+                document.getElementById("user-input").value = "";
+
+                addMessage("user", userMessage);
+                
+                const response = await chatWithBot(userMessage);
+                addMessage("bot", response.bot_response);
+            }
+        }
+
+        async function chatWithBot(userPrompt) {
+            const url = "/chat/";
+            const response = await fetch(url, {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json",
+                },
+                body: JSON.stringify({ user_prompt: userPrompt }),
+            });
+
+            const data = await response.json();
+            return data;
+        }
+
+        function addMessage(sender, message) {
+            const messageDiv = document.createElement("div");
+            messageDiv.classList.add("message");
+            messageDiv.innerHTML = `<strong>${sender}:</strong> ${message}`;
+            document.getElementById("chat-box").appendChild(messageDiv);
+        }
+    </script>
 </body>
 </html>
